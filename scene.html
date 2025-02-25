@@ -25,6 +25,9 @@
         <img id="portal_gun" src="pic/portal_gun.png">
 		<img id = "sky" src = "pic/sky.jpg">
 		<img id = "screenshot" src = "pic/screenshot.png">
+		<img id = "plate" src = "pic/MetalPlates.jpg">
+		<img id = "moving" src = "pic/movingplates.jpg">
+		
  		
 		<video id="bluePortalVid" src="vid/bluePortalVid.mp4" autoplay loop="true" preload="auto" muted></video>
 		<video id="orangePortalVid" src="vid/orangePortalVid.mp4" autoplay loop="true" preload="auto" muted></video>
@@ -41,19 +44,22 @@
 		  
 		  
 
-		  <!--<a-plane static-body  color="green"  visible="false" rotation="-90 0 0" side="double"  position="-0.5 0 25" width="30" height="100" opacity="0.5"></a-plane>--!>
-		  <a-plane static-body color="red"  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 -6" width="23" height="10" depth = "3" opacity="0.5"></a-plane>
+			  <!--<a-plane static-body  color="green"  visible="false" rotation="-90 0 0" side="double"  position="-0.5 0 25" width="30" height="100"  ></a-plane>--!>
+		  <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 -6" width="23" height="10" depth = "3" src="#plate"></a-plane>
 
-          <a-plane static-body color="red"  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 15" width="23" height="10" opacity="0.5"></a-plane>
-          <a-plane static-body color="red"  visible="" rotation="-90 0 0" side="double"  position="-0.5 -4 25" width="23" height="10" opacity="0.5"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 15" width="23" height="10" depth = "3" src="#plate"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 -4 25" width="23" height="10" depth = "3" src="#plate"></a-plane>
 
-          <a-plane static-body color="green"  visible="" rotation="-90 0 0" side="double"  position="-0.5 8 34.5" width="23" height="9" opacity="0.5"></a-plane>
-          <a-plane static-body color="green"  visible="" rotation="-90 0 0" side="double"  position="6 8 50" width="10" height="22" opacity="0.5"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 8 34.5" width="23" height="9" depth = "3" src="#plate"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="6 8 50" width="10" height="22" depth = "3" src="#plate"></a-plane>
 
 
 
-          <a-plane static-body color="red"  visible="" rotation="-90 0 0" side="double"  position="-0.5 20 46" width="23" height="30" opacity="0.5"></a-plane>
-          <a-plane static-body color="green"  visible="" rotation="-90 0 0" side="double"  position="-0.5 -8 4.5" width="23" height="11" opacity="0.5"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 20 46" width="23" height="30" depth = "3" src="#plate"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 -8 4.5" width="23" height="11" depth = "3" src="#plate"></a-plane>
+		  
+		  
+		  
 	  <a-entity>
             <a-box position="-2.5 4 50 " src="#wall" width="7" height="8" depth="0.1" static-body></a-box>
       </a-entity>
@@ -202,10 +208,14 @@
       </a-entity>
 
 	</a-entity>
-
-	<a-plane static-body color="green" rotation="-90 0 0" visible side="double" position="-13 4 50" width="8" height="5" opacity="0.5"
-    animation="property: position; to: '-13 4 50'; dur: 5000; easing: linear; loop: true; dir: alternate">     
-	</a-plane>
+	
+	
+	<a-plane static-body color="green" rotation="-90 0 0" visible side="double" position="-13 4 50" width="8" height="5"  depth = "3" src="#moving" animation="property: position; to: '-13 4 50'; dur: 5000; easing: linear; loop: true; dir: alternate"></a-plane>
+	
+	<a-gltf-model id="trophyModel" static-body src="#trophy" scale="2 2 2" position="0 8 125"></a-gltf-model>
+      
+	
+	
 
 	<a-entity position="0 11 23" rotation="45 0 0">
       <a-entity class="wall" position="0 -4 0">
@@ -377,6 +387,11 @@
 			<a-entity id="welcomeText" text="value: WELCOME BACK; color: red; align: center;" position="0 3 -2" scale="2 2 2" visible="false"
         animation="property: material.opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
 			</a-entity>
+			
+			<a-entity  id="winText" text="value: Congratulations, you won; color: red; align: center;" position="0 3 -2" scale="2 2 2" visible="false" 
+		animation="property: material.opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
+			</a-entity>
+			
 	  
 		  <a-entity id="hint" position="0 -1 -2" 
 			  text="value: ; align: center; width: 4; color: black; opacity: 0"
