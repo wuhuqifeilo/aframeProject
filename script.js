@@ -148,3 +148,19 @@ function distance(obj1, obj2) {
   return p1.distanceTo(p2);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const trophyModel = document.getElementById('trophyModel');
+  trophyModel.addEventListener('click', clickTrophy);
+});
+
+function clickTrophy() {
+  const winText = document.getElementById('winText');
+  winText.setAttribute('visible', true);
+  winText.setAttribute('material', 'opacity: 1');
+  
+  winText.emit('fadeOut');
+
+  setTimeout(() => {
+    winText.setAttribute('visible', false);
+  }, 5000);
+}
