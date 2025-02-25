@@ -21,22 +21,27 @@ class Robot {
 
     let distance = this.distanceTo(this.camera);
 
-    if (distance < 10) {  
-      if (!this.isChasing) {
-        this.isChasing = true;
-      }
-      this.faceToCamera();
-      this.move();
-    } else {             
-      if (this.isChasing) {
-        this.isChasing = false;
-        this.go = false;  
-      }
+    if (distance < 1) {  
+        console.log("player caught by robot, back to origin");
+        this.teleportPlayerToOrigin();
+        return;
     }
 
+    if (distance < 10) {  
+        if (!this.isChasing) {
+            this.isChasing = true;
+        }
+        this.faceToCamera();
+        this.move();
+    } else {  
+        if (this.isChasing) {
+            this.isChasing = false;
+            this.go = false;
+        }
+    }
 
-    if (this.isChasing && distance > 15) {
-      this.returnToOrigin();
+    if (this.isChasing && distance > 15) { 
+        this.returnToOrigin();
     }
   }
 
@@ -44,13 +49,33 @@ class Robot {
 
     if (Date.now() - this.lastReturnTime < this.returnCooldown) return;
     
-    console.log("距离超过15米，返回原点");
+    console.log("exceeding 15m, robot back to origin");
     this.obj.setAttribute("position", this.initialPosition);
 
     this.lastReturnTime = Date.now();
     this.isChasing = false;
     this.go = false;
   }
+  
+  teleportPlayerToOrigin() {
+    let player = this.camera; 
+    player.setAttribute("position", { x: 0, y: 2, z: 0 }); 
+    this.isChasing = false;  
+    this.go = false;  
+
+    console.log("player back to origin");
+	let soundCaught = document.getElementById("audioCaught");
+	soundCaught.components.sound.playSound();
+	
+	let welcomeText = document.getElementById("welcomeText");
+    welcomeText.setAttribute("visible", "true");  // 显示文本
+	welcomeText.setAttribute("material", "opacity: 1")
+    welcomeText.emit("fadeOut");  // 触发淡出动画
+	
+	setTimeout(() => {
+        welcomeText.setAttribute("visible", "false");
+    }, 2000);
+}
 
   distanceTo(target) {
     let p1 = this.obj.object3D.position;

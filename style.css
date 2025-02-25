@@ -37,5 +37,22 @@ html, body {
   width: 80%;
 }
 
-#snapshot {
-  text
+#snapshot img {
+  width: 70%;  
+  max-width: 800px; 
+  height: auto; 
+  display: block;
+  margin: auto;
+}
+
+#description p {
+  font-size: 1.4em; 
+}
+
+#controls h2 {
+  font-size: 1.8em; 
+}
+
+#controls table {
+  font-size: 1.2em; 
+}

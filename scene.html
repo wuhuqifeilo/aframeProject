@@ -19,6 +19,7 @@
         <audio id="fireBlue" src="audio/FireBlue.mp3" preload="auto" volume=0.5 ></audio>
         <audio id="fireOrange" src="audio/FireOrange.mp3" preload="auto" volume=0.5></audio>
         <audio id="teleport" src="audio/teleport.mp3" preload="auto"></audio>
+		<audio id="caught" src="audio/caught.mp3" preload="auto"></audio>
         
 		<img id="wall" src="pic/wall.jpg">
         <img id="portal_gun" src="pic/portal_gun.png">
@@ -30,6 +31,7 @@
 		
 		<a-asset-item id="console" src="gltf/combine_console/scene.gltf" preload = "auto"></a-asset-item>
 		<a-asset-item id="robot" src="gltf/autonomous_robot_sweeper/scene.gltf" preload = "auto"></a-asset-item>
+		<a-asset-item id="portal_cube" src="gltf/portal_cube/scene.gltf" preload = "auto" scale = "0.5 0.5 0.5"></a-asset-item>
 		<a-asset-item id="trophy" src="gltf/trophy/scene.gltf" preload = "auto"></a-asset-item>
       </a-assets>
 
@@ -37,7 +39,7 @@
 		
 		  <a-sky src = "#sky" ></a-sky>	
 		  
-		  <a-gltf-model id="trophyModel" static-body src="#trophy" scale="2 2 2" position="0 8 125"></a-gltf-model>
+		  
 
 		  <!--<a-plane static-body  color="green"  visible="false" rotation="-90 0 0" side="double"  position="-0.5 0 25" width="30" height="100" opacity="0.5"></a-plane>--!>
 		  <a-plane static-body color="red"  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 -6" width="23" height="10" depth = "3" opacity="0.5"></a-plane>
@@ -66,7 +68,7 @@
     animation="property: position; to: '-13 4 50'; dur: 5000; easing: linear; loop: true; dir: alternate">
     </a-plane>  
 
-		  <a-sphere dynamic-body color="green" position="-5.5 10.5 -5.5" ></a-sphere>
+		  <a-box dynamic-body="shape: box; halfExtents: 5 5 5" gltf-model="#portal_cube" position="-5.5 10.5 -5.5" scale = "0.5 0.5 0.5"></a-box>
 		  
 	<a-entity>
 	
@@ -205,11 +207,6 @@
     animation="property: position; to: '-13 4 50'; dur: 5000; easing: linear; loop: true; dir: alternate">     
 	</a-plane>
 
-
-	
-	
-
-	
 	<a-entity position="0 11 23" rotation="45 0 0">
       <a-entity class="wall" position="0 -4 0">
           <a-entity class="plank" position="-4 0 0" >
@@ -364,21 +361,26 @@
     </a-entity>
 
       <a-entity id="cameraRig" position="0 1.6 -1">
-        <a-camera id="camera" kinema-body look-controls = "pointerLockEnabled: true">
+        <a-camera id="camera" kinema-body look-controls = "pointerLockEnabled: true" >
 		
 			  <a-entity id="audioBlue" sound="src:#fireBlue; autoplay:false; positional:false"></a-entity>
 			  <a-entity id="audioOrange" sound="src:#fireOrange; autoplay:false; positional:false"></a-entity>
 			  <a-entity id="audioTeleport" sound="src:#teleport; autoplay:false; positional:false"></a-entity>
+			  <a-entity id="audioCaught" sound="src:#caught; autoplay:false; positional:false"></a-entity>
 			 
           <a-cursor raycaster="objects: .clickable">
 		  	  <a-entity id="transition" geometry="primitive: plane; width:6; height:5" 
 			  material="color:#000; transparent: true; alphaTest: 0.5; opacity:0" position="0 0 -0.5"
 			  animation = "property: material.opacity; from 1; to 0; dur: 1000; startEvents: fadeOut">
 			  </a-entity> 
+			  
+			<a-entity id="welcomeText" text="value: WELCOME BACK; color: red; align: center;" position="0 3 -2" scale="2 2 2" visible="false"
+        animation="property: material.opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
+			</a-entity>
 	  
 		  <a-entity id="hint" position="0 -1 -2" 
 			  text="value: ; align: center; width: 4; color: black; opacity: 0"
-			  animation="property: text.opacity; from: 1; to: 0; dur: 1000; startEvents: fadeOut">
+			  animation="property: material.opacity; from: 1; to: 0; dur: 1000; startEvents: fadeOut">
 		  </a-entity>
 		  
 		  <a-entity id="messageContainer"></a-entity>

@@ -17,8 +17,7 @@ window.onload = function(){
   scene.addEventListener("loaded", () => {
     console.log("robot loaded");
     robot = new Robot(-1, 8, 65, cam); 
-	posSaveMachine1 = new posSave(40, 0.25, -65);
-	posSaveMachine2 = new posSave(70, 8, 95);
+	posSaveMachine = new posSave(70, 8, 95);
   });
 
 
@@ -94,61 +93,52 @@ function loop(){
   }else {
     console.warn("Robot is not initialized yet.");
   }
-  if(posSaveMachine1 && posSaveMachine2){
-	console.log("Machine 1:", posSaveMachine1);
-    console.log("Machine 2:", posSaveMachine2);
-  }
 
   
   requestAnimationFrame(loop);
 }
 
-function teleportCheck(portal1, portal2){
-  if(!portal1 || !portal2) return;      
-  if(portal1.moving || portal2.moving) return; 
+function teleportCheck(portal1, portal2) {
+  if (!portal1 || !portal2) return;      
+  if (portal1.moving || portal2.moving) return; 
   let transition = document.getElementById("transition");
 
   let now = Date.now();
-  if(now - lastTeleportTime < cd) return;
-  
+  if (now - lastTeleportTime < cd) return;
 
-	if (distance(portal1.obj, cam) < 2){
-	  transition.setAttribute("material", "opacity: 1");
-	  console.log("Teleport to Orange"); 
-	  let p2p = portal2.obj.object3D.position;
-	  cam.setAttribute("wasd-controls", "enabled: false");
-	  cam.setAttribute("position", {x:p2p.x, y:p2p.y, z:p2p.z});
-	  lastTeleportTime = now;
-	  setTimeout(()=>{
-	  transition.setAttribute("material", "opacity: 0");
-	  cam.setAttribute("wasd-controls", "enabled: true");
-	  },200);
-	  
-	  let teleSound = document.getElementById("audioTeleport");
-	  teleSound.components.sound.playSound();
-	}
-	
-	if (distance(portal2.obj, cam) < 2) {
-	  transition.setAttribute("material", "opacity: 1");
-	  console.log("Teleport to Blue");
-	  let p1p = portal1.obj.object3D.position;
-	  cam.setAttribute("wasd-controls", "enabled: false");
-	  cam.setAttribute("position", {x:p1p.x, y:p1p.y, z:p1p.z});
-	  lastTeleportTime = now;
-	  setTimeout(()=>{
-	  transition.setAttribute("material", "opacity: 0");
-	  cam.setAttribute("wasd-controls", "enabled: true");
-	  },200);	
+  let camPos = new THREE.Vector3();
+  cam.object3D.getWorldPosition(camPos);
 
-	  
-	  let teleSound = document.getElementById("audioTeleport");
-	  teleSound.components.sound.playSound();
-	}
-	
-	
-	
+  let p1p = new THREE.Vector3();
+  let p2p = new THREE.Vector3();
+  portal1.obj.object3D.getWorldPosition(p1p);
+  portal2.obj.object3D.getWorldPosition(p2p);
+
+  if (camPos.distanceTo(p1p) < 2) {
+    teleportTo(p2p);
+  } else if (camPos.distanceTo(p2p) < 2) {
+    teleportTo(p1p);
+  }
 }
 
+
+function teleportTo(targetPosition) {
+  let transition = document.getElementById("transition");
+
+  transition.setAttribute("material", "opacity: 1");
+  cam.setAttribute("wasd-controls", "enabled: false");
+  cam.setAttribute("position", { x: targetPosition.x, y: targetPosition.y, z: targetPosition.z });
+
+  lastTeleportTime = Date.now();
+
+  setTimeout(() => {
+    transition.setAttribute("material", "opacity: 0");
+    cam.setAttribute("wasd-controls", "enabled: true");
+  }, 200);
+
+  let teleSound = document.getElementById("audioTeleport");
+  teleSound.components.sound.playSound();
+}
 
 function distance(obj1, obj2) {
   let p1 = new THREE.Vector3();
