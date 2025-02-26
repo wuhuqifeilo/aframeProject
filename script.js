@@ -13,11 +13,12 @@ window.onload = function(){
   bluePortalshot = document.getElementById("bluePortalShot");
   orangePortalshot = document.getElementById("orangePortalShot");
   machineClicked = document.getElementById("machineClicked");
-  
-  document.addEventListener('DOMContentLoaded', () => {
-	  let trophyModel = document.getElementById('trophyModel');
-	  trophyModel.addEventListener('click', clickTrophy());
-  });
+  const trophyModel = document.querySelector('#trophyModel');
+    
+    if (trophyModel) {
+        trophyModel.addEventListener('click', showWinText);
+    }
+};
 	
   scene.addEventListener("loaded", () => {
     console.log("robot loaded");
@@ -154,14 +155,19 @@ function distance(obj1, obj2) {
 }
 
 
-function clickTrophy() {
-  let winText = document.getElementById('winText');
-  winText.setAttribute('visible', true);
-  winText.setAttribute('material', 'opacity: 1');
-  
-  winText.emit('fadeOut');
 
-  setTimeout(() => {
-    winText.setAttribute('visible', false);
-  }, 5000);
+
+function showWinText() {
+    let winText = document.getElementById("winText");
+    if (winText) {
+        winText.setAttribute("visible", "true");
+        winText.setAttribute("opacity", "1");
+        winText.emit("fadeOut");
+
+        setTimeout(() => {
+            winText.setAttribute("visible", "false");
+            winText.setAttribute("opacity", "0");
+        }, 30000);
+    }
 }
+
