@@ -47,7 +47,7 @@ class Portal {
 
     this.scene.appendChild(this.obj);
 
-    let speed = 0.15; 
+    let speed = 0.05; 
     let cosX = Math.cos(rotX);
     this.dx = -Math.sin(rotY) * cosX * speed;
     this.dy =  Math.sin(rotX) * speed;

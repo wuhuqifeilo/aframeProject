@@ -16,9 +16,9 @@ window.onload = function(){
   const trophyModel = document.querySelector('#trophyModel');
     
     if (trophyModel) {
-        trophyModel.addEventListener('click', showWinText);
+        trophyModel.addEventListener('click', showWinText());
     }
-};
+
 	
   scene.addEventListener("loaded", () => {
     console.log("robot loaded");
@@ -58,10 +58,12 @@ window.onload = function(){
 	  }
 	}
 	
+	loop();
+	
   });
 
-  loop();
 }
+
 
 function updateCooldownDisplay() {
   let cooldownDisplay = document.getElementById("cooldownDisplay");
@@ -159,7 +161,7 @@ function distance(obj1, obj2) {
 
 function showWinText() {
 	
-	let soundApplause= document.getElementById("audioApplause");
+	let soundApplause = document.getElementById("audioApplause");
 	if (soundApplause) {
 		soundApplause.components.sound.playSound();
 	}	

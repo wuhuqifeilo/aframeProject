@@ -47,7 +47,7 @@
           <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 -4 25" width="23" height="10" depth = "3" src="#plate" repeat="2 1"></a-plane>
 
           <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 8 34.5" width="23" height="9" depth = "3" src="#plate" repeat="2 1"></a-plane>
-          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="6 8 50" width="10" height="22" depth = "3" src="#plate" repeat="2 1"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="6 8 50" width="10" height="22" depth = "3" src="#plate" repeat="1 2"></a-plane>
 
 
 
@@ -73,7 +73,7 @@
 	<a-entity>
 	
 
-			<a-plane static-body scale="24 1 70" color="red" position="0 8 96" rotation = "-90 0 0" side="double"></a-plane>	
+			<a-plane static-body  color="red" position="0 8 96" rotation = "90 0 0" width="23" height = "70" side="double"></a-plane>	
 
 			<a-box src="#wall" static-body position="11 10 96" rotation="0 90 0" depth="0.1" width="70" height="10" repeat="2 1"></a-box>
 			<a-box src="#wall" static-body position="-12 10 96" rotation="0 90 0" depth="0.1" width="70" height="10" repeat="2 1"></a-box>
@@ -142,11 +142,11 @@
             <a-box position="-3.5 14 39"  src="#wall" width="17" height="12" depth="0.1" static-body repeat="2 1"></a-box>
 
 
-            <a-box position="1 4 44.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+            <a-box position="1 4 44.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body ></a-box>
 
-            <a-box position="1 4 55.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body></a-box>
+            <a-box position="1 4 55.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body ></a-box>
 
-            <a-box position="-12 4 50 " rotation="0 90 0" src="#wall" width="22" height="8" depth="0.1" static-body></a-box>
+            <a-box position="-12 4 50 " rotation="0 90 0" src="#wall" width="22" height="8" depth="0.1" static-body ></a-box>
 
             <a-box position="-2.5 4 50 " src="#wall" width="7" height="8" depth="0.1" static-body></a-box>
 
@@ -180,12 +180,12 @@
 			  animation = "property: material.opacity; from 1; to 0; dur: 1000; startEvents: fadeOut">
 			  </a-entity> 
 			  
-			<a-text id="welcomeText" value="You got caught!" position="0 2 -3"
+			<a-text id="welcomeText" value="You got caught!" position="0 0 0"
 					visible="false" opacity="0" style="color: red"
 					animation__fade="property: opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
 			</a-text>
 			
-			 <a-text id="winText" value="Congratulations, you won" position="0 2 -3" scale="2 2 2" visible="false" opacity="0" style="color: red"
+			 <a-text id="winText" value="Congratulations, you won!" position="0 0 0" scale="1 1 1" visible="false" opacity="0" style="color: red"
 				animation__fade="property: opacity; from: 1; to: 0; dur: 3000; startEvents: fadeOut">
 			 </a-text>
 			
