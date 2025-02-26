@@ -34,32 +34,26 @@
 		
 		<a-asset-item id="console" src="gltf/combine_console/scene.gltf" preload = "auto"></a-asset-item>
 		<a-asset-item id="robot" src="gltf/autonomous_robot_sweeper/scene.gltf" preload = "auto"></a-asset-item>
-		<a-asset-item id="portal_cube" src="gltf/portal_cube/scene.gltf" preload = "auto" scale = "0.5 0.5 0.5"></a-asset-item>
+		<a-asset-item id="portal_cube" src="gltf/portal_cube/scene.gltf" preload = "auto"></a-asset-item>
 		<a-asset-item id="trophy" src="gltf/trophy/scene.gltf" preload = "auto"></a-asset-item>
       </a-assets>
 
-        <a-entity fps-counter></a-entity>
 		
 		  <a-sky src = "#sky" ></a-sky>	
-		  
-		  
+ 
+		  <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 -6" width="23" height="10" depth = "3" src="#plate" repeat="2 1"></a-plane>
 
-			  <!--<a-plane static-body  color="green"  visible="false" rotation="-90 0 0" side="double"  position="-0.5 0 25" width="30" height="100"  ></a-plane>--!>
-		  <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 -6" width="23" height="10" depth = "3" src="#plate"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 15" width="23" height="10" depth = "3" src="#plate" repeat="2 1"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 -4 25" width="23" height="10" depth = "3" src="#plate" repeat="2 1"></a-plane>
 
-          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 0 15" width="23" height="10" depth = "3" src="#plate"></a-plane>
-          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 -4 25" width="23" height="10" depth = "3" src="#plate"></a-plane>
-
-          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 8 34.5" width="23" height="9" depth = "3" src="#plate"></a-plane>
-          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="6 8 50" width="10" height="22" depth = "3" src="#plate"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 8 34.5" width="23" height="9" depth = "3" src="#plate" repeat="2 1"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="6 8 50" width="10" height="22" depth = "3" src="#plate" repeat="2 1"></a-plane>
 
 
 
-          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 20 46" width="23" height="30" depth = "3" src="#plate"></a-plane>
-          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 -8 4.5" width="23" height="11" depth = "3" src="#plate"></a-plane>
-		  
-		  
-		  
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 20 46" width="23" height="30" depth = "3" src="#plate" repeat="2 1"></a-plane>
+          <a-plane static-body  visible="" rotation="-90 0 0" side="double"  position="-0.5 -8 4.5" width="23" height="11" depth = "3" src="#plate" repeat="2 1"></a-plane>
+	  
 	  <a-entity>
             <a-box position="-2.5 4 50 " src="#wall" width="7" height="8" depth="0.1" static-body></a-box>
       </a-entity>
@@ -74,153 +68,99 @@
     animation="property: position; to: '-13 4 50'; dur: 5000; easing: linear; loop: true; dir: alternate">
     </a-plane>  
 
-		  <a-box dynamic-body="shape: box; halfExtents: 5 5 5" gltf-model="#portal_cube" position="-5.5 10.5 -5.5" scale = "0.5 0.5 0.5"></a-box>
+	<a-box position="-5 1 -3" gltf-model = "#portal_cube" scale = "0.5 0.5 0.5"></a-box>
 		  
 	<a-entity>
 	
-		<a-entity >
-			<a-box  static-body scale="24 0 70" color="green" position="0 8 96"> </a-box>	  
-	    </a-entity>
-		
-		<a-entity>
-			<a-box src="#wall" static-body position="11 10 96" rotation="0 90 0" depth="0.1" width="70" height="10"></a-box>
-		</a-entity>
 
-		<a-entity>
-			<a-box src="#wall" static-body position="-12 10 96" rotation="0 90 0" depth="0.1" width="70" height="10"></a-box>
-		</a-entity>
+			<a-plane static-body scale="24 1 70" color="red" position="0 8 96" rotation = "-90 0 0" side="double"></a-plane>	
 
-		<a-entity>
-			<a-box src="#wall" static-body position="0 10 131"  depth="0.1" width="28" height="10"></a-box>
-		</a-entity>
+			<a-box src="#wall" static-body position="11 10 96" rotation="0 90 0" depth="0.1" width="70" height="10" repeat="2 1"></a-box>
+			<a-box src="#wall" static-body position="-12 10 96" rotation="0 90 0" depth="0.1" width="70" height="10" repeat="2 1"></a-box>
+
+
+			<a-box src="#wall" static-body position="0 10 131"  depth="0.1" width="28" height="10" repeat="2 1"></a-box>
 
 
 
-      <a-entity>
-            <a-box position="11 4 4.5" rotation="0 90 0" src="#wall" width="31" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
-      <a-entity>
-            <a-box position="-12 4 4.5 " rotation="0 90 0" src="#wall" width="31" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
+            <a-box position="11 4 4.5" rotation="0 90 0" src="#wall" width="31" height="8" depth="0.1" static-body repeat="2 1"></a-box>
 
-      <a-entity>
-            <a-box position="-0.5 4 -11"  src="#wall" width="23" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
+            <a-box position="-12 4 4.5 " rotation="0 90 0" src="#wall" width="31" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+
+            <a-box position="-0.5 4 -11"  src="#wall" width="23" height="8" depth="0.1" static-body repeat="2 1"></a-box>
 
 
 
-      <a-entity>
-            <a-box position="11 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
-      <a-entity>
-            <a-box position="-12 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
 
 
-      <a-entity>
-            <a-box position="-0.5 -4 10"  src="#wall" width="23" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
-	  <a-entity>
-            <a-box position="-0.5 -4 -1"  src="#wall" width="23" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
+            <a-box position="11 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+            <a-box position="-12 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1"></a-box>
 
-      <a-entity>
-            <a-box position="-0.5 -2 20"  src="#wall" width="23" height="4" depth="0.1" static-body></a-box>
-      </a-entity>
-	  <a-entity>
-            <a-box position="-0.5 2 30"  src="#wall" width="23" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
+
+
+
+            <a-box position="-0.5 -4 10"  src="#wall" width="23" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+
+            <a-box position="-0.5 -4 -1"  src="#wall" width="23" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+
+
+
+            <a-box position="-0.5 -2 20"  src="#wall" width="23" height="4" depth="0.1" static-body repeat="2 1"></a-box>
+
+            <a-box position="-0.5 2 30"  src="#wall" width="23" height="12" depth="0.1" static-body repeat="2 1"></a-box>
+
 
 
 
       <!-- Wall with Door -->
-      <a-entity class="wallWithDoor"> 
-            <a-box src="#wall" position="-0.5 6 20" width="5" height="3.8" depth="0.1" static-body></a-box>
-      </a-entity>
-	  <a-entity>
-            <a-box position="6.5 4 20"  src="#wall" width="9" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
-	  <a-entity>
-            <a-box position="-7.5 4 20"  src="#wall" width="9" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
+            <a-box src="#wall" position="-0.5 6 20" width="5" height="3.8" depth="0.1" static-bodyrepeat="2 1"></a-box>
 
-      <a-entity>
-            <a-box position="11 2 25" rotation="0 90 0" src="#wall" width="10" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
-      <a-entity>
-            <a-box position="-12 2 25 " rotation="0 90 0" src="#wall" width="10" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
+
+            <a-box position="6.5 4 20"  src="#wall" width="9" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+
+            <a-box position="-7.5 4 20"  src="#wall" width="9" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+
+            <a-box position="11 2 25" rotation="0 90 0" src="#wall" width="10" height="12" depth="0.1" static-body repeat="2 1"></a-box>
+ 
+            <a-box position="-12 2 25 " rotation="0 90 0" src="#wall" width="10" height="12" depth="0.1" static-body repeat="2 1"></a-box>
+
 
 
 	 <!-- Part 3 -->
-	<a-triangle src="#wall" vertex-a="11 8 20"  vertex-b="11 8 32"  vertex-c="11 20 32" side="double" depth="0.1" static-body ></a-triangle>
+	<a-triangle src="#wall" vertex-a="11 8 20"  vertex-b="11 8 32"  vertex-c="11 20 32" side="double" depth="0.1" static-body repeat="2 1"></a-triangle>
 
-	<a-triangle src="#wall" vertex-a="-12 8 20"  vertex-b="-12 8 32"  vertex-c="-12 20 32" side="double" depth="0.1" static-body ></a-triangle>
+	<a-triangle src="#wall" vertex-a="-12 8 20"  vertex-b="-12 8 32"  vertex-c="-12 20 32" side="double" depth="0.1" static-body repeat="2 1"></a-triangle>
 
+            <a-box position="11 14 46" rotation="0 90 0" src="#wall" width="30" height="12" depth="0.1" static-body repeat="2 1"></a-box>
 
-	<a-entity>
+            <a-box position="-12 14 46" rotation="0 90 0" src="#wall" width="30" height="12" depth="0.1" static-body repeat="2 1"></a-box>
 
-      <a-entity>
-            <a-box position="11 14 46" rotation="0 90 0" src="#wall" width="30" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
-      <a-entity>
-            <a-box position="-12 14 46" rotation="0 90 0" src="#wall" width="30" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
+            <a-box position="-4 14 61"  src="#wall" width="16" height="12" depth="0.1" static-body repeat="2 1"></a-box>
 
-	  <a-entity>
-            <a-box position="-4 14 61"  src="#wall" width="16" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
+            <a-box position="2.5 14 50"  src="#wall" width="17" height="12" depth="0.1" static-body> repeat="2 1"</a-box>
+ 
+            <a-box position="-3.5 14 39"  src="#wall" width="17" height="12" depth="0.1" static-body repeat="2 1"></a-box>
 
 
+            <a-box position="1 4 44.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1"></a-box>
 
- 	 <a-entity>
-            <a-box position="2.5 14 50"  src="#wall" width="17" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
-
-	 <a-entity>
-            <a-box position="-3.5 14 39"  src="#wall" width="17" height="12" depth="0.1" static-body></a-box>
-      </a-entity>
-
-
-
-
-
-      <a-entity>
-            <a-box position="1 4 44.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
-      <a-entity>
             <a-box position="1 4 55.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
 
-      <a-entity>
             <a-box position="-12 4 50 " rotation="0 90 0" src="#wall" width="22" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
 
-
-      <a-entity>
             <a-box position="-2.5 4 50 " src="#wall" width="7" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
-      <a-entity>
-            <a-box position="-5.5 4 39 " src="#wall" width="13" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
-      <a-entity>
-            <a-box position="-5.5 4 61 " src="#wall" width="13" height="8" depth="0.1" static-body></a-box>
-      </a-entity>
 
-	</a-entity>
+            <a-box position="-5.5 4 39 " src="#wall" width="13" height="8" depth="0.1" static-body></a-box>
+
+            <a-box position="-5.5 4 61 " src="#wall" width="13" height="8" depth="0.1" static-body repeat="2 1"></a-box>
 	
 	
 	<a-plane static-body  rotation="-90 0 0" visible side="double" position="-13 4 50" width="8" height="5"  depth = "3" src="#moving" animation="property: position; to: '-13 4 50'; dur: 5000; easing: linear; loop: true; dir: alternate"></a-plane>
 	
 	<a-gltf-model id="trophyModel" static-body src="#trophy" scale="2 2 2" position="0 8 125"></a-gltf-model>
-      
-	
-	
-	
 
-	  <a-entity>
-            <a-box  rotation="45 0 0" position="-.5 14 25"  src="#wall" width="20" height="15" depth="0.2" static-body></a-box>
-      </a-entity>
+            <a-box class="ignore-portal" rotation="45 0 0" position="-.5 13.5 25.5"  src="#wall" width="25" height="16.5" depth="0.2" static-body></a-box>
+
 
 	
 
@@ -240,21 +180,20 @@
 			  animation = "property: material.opacity; from 1; to 0; dur: 1000; startEvents: fadeOut">
 			  </a-entity> 
 			  
-			<a-entity id="welcomeText" text="value: WELCOME BACK; color: red; align: center;" position="0 3 -2" scale="2 2 2" visible="false"
-        animation="property: material.opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
-			</a-entity>
+			<a-text id="welcomeText" value="You got caught!" position="0 2 -3"
+					visible="false" opacity="0" style="color: red"
+					animation__fade="property: opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
+			</a-text>
 			
-			<a-entity  id="winText" text="value: Congratulations, you won; color: red; align: center;" position="0 3 -2" scale="2 2 2" visible="false" 
+			<a-text  id="winText" value= "Congratulations, you won" color= "red: style = "align: center;" position="0 3 -2" scale="2 2 2" visible="false" 
 		animation="property: material.opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
-			</a-entity>
+			</a-text>
 			
 	  
 		  <a-entity id="hint" position="0 -1 -2" 
 			  text="value: ; align: center; width: 4; color: black; opacity: 0"
 			  animation="property: material.opacity; from: 1; to: 0; dur: 1000; startEvents: fadeOut">
 		  </a-entity>
-		  
-		  <a-entity id="messageContainer"></a-entity>
 			  
 		    <a-entity id="cooldownDisplay" color = "white" style="position: absolute; top: 10%; left: 75%; transform: translate(-50%, -50%); 
        color: white; font-size: 2rem; background-color: rgba(0, 0, 0, 0.7); padding: 10px 20px; border-radius: 10px;z-index: 999;">></a-entity>

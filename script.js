@@ -13,11 +13,16 @@ window.onload = function(){
   bluePortalshot = document.getElementById("bluePortalShot");
   orangePortalshot = document.getElementById("orangePortalShot");
   machineClicked = document.getElementById("machineClicked");
+  
+  document.addEventListener('DOMContentLoaded', () => {
+	  let trophyModel = document.getElementById('trophyModel');
+	  trophyModel.addEventListener('click', clickTrophy());
+  });
 	
   scene.addEventListener("loaded", () => {
     console.log("robot loaded");
     robot = new Robot(-1, 8, 65, cam); 
-	posSaveMachine = new posSave(70, 8, 95);
+	posSaveMachine = new posSave(47.5, 8, -5);
   });
 
 
@@ -148,13 +153,9 @@ function distance(obj1, obj2) {
   return p1.distanceTo(p2);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const trophyModel = document.getElementById('trophyModel');
-  trophyModel.addEventListener('click', clickTrophy);
-});
 
 function clickTrophy() {
-  const winText = document.getElementById('winText');
+  let winText = document.getElementById('winText');
   winText.setAttribute('visible', true);
   winText.setAttribute('material', 'opacity: 1');
   

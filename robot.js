@@ -57,25 +57,32 @@ class Robot {
     this.go = false;
   }
   
-  teleportPlayerToOrigin() {
-    let player = this.camera; 
-    player.setAttribute("position", { x: 0, y: 2, z: 0 }); 
-    this.isChasing = false;  
-    this.go = false;  
+	teleportPlayerToOrigin() {
+		let player = this.camera;
+		player.setAttribute("position", { x: 0, y: 2, z: 0 });
 
-    console.log("player back to origin");
-	let soundCaught = document.getElementById("audioCaught");
-	soundCaught.components.sound.playSound();
-	
-	let welcomeText = document.getElementById("welcomeText");
-    welcomeText.setAttribute("visible", "true");  // 显示文本
-	welcomeText.setAttribute("material", "opacity: 1")
-    welcomeText.emit("fadeOut");  // 触发淡出动画
-	
-	setTimeout(() => {
-        welcomeText.setAttribute("visible", "false");
-    }, 2000);
-}
+		this.isChasing = false;
+		this.go = false;
+
+		console.log("player back to origin");
+		
+		let soundCaught = document.getElementById("audioCaught");
+		if (soundCaught) {
+			soundCaught.components.sound.playSound();
+		}
+
+		let welcomeText = document.getElementById("welcomeText");
+		if (welcomeText) {
+			welcomeText.setAttribute("visible", "true");
+			welcomeText.setAttribute("opacity", "1");
+			welcomeText.emit("fadeOut");
+
+			setTimeout(() => {
+				welcomeText.setAttribute("visible", "false");
+				welcomeText.setAttribute("opacity", "0");
+			}, 2500);
+		}
+	}
 
   distanceTo(target) {
     let p1 = this.obj.object3D.position;

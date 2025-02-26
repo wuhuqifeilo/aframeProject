@@ -94,6 +94,11 @@ class Portal {
 	let boxs = this.scene.querySelectorAll("a-box");
     for (let i = 0; i < boxs.length; i++) {
       let box = boxs[i];
+	  
+	  if (box.classList.contains("ignore-portal")) {
+            continue;
+        }
+		
       if (this.isColliding(this.obj, box)){
         this.moving = false;
         this.dx = 0;
