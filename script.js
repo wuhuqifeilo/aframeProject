@@ -158,6 +158,13 @@ function distance(obj1, obj2) {
 
 
 function showWinText() {
+	
+	let soundApplause= document.getElementById("audioApplause");
+	if (soundApplause) {
+		soundApplause.components.sound.playSound();
+	}	
+
+	
     let winText = document.getElementById("winText");
     if (winText) {
         winText.setAttribute("visible", "true");
