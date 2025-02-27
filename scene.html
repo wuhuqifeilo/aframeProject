@@ -20,6 +20,8 @@
         <audio id="fireOrange" src="audio/FireOrange.mp3" preload="auto" volume=0.5></audio>
         <audio id="teleport" src="audio/teleport.mp3" preload="auto"></audio>
 		<audio id="caught" src="audio/caught.mp3" preload="auto"></audio>
+		<audio id="applause" src="audio/applause.mp3" preload="auto"></audio>
+		
         
 		<img id="wall" src="pic/wall.jpg">
         <img id="portal_gun" src="pic/portal_gun.png">
@@ -73,7 +75,7 @@
 	<a-entity>
 	
 
-			<a-plane static-body  color="red" position="0 8 96" rotation = "90 0 0" width="23" height = "70" side="double"></a-plane>	
+			<a-plane static-body  src="#plate" position="0 8 96" rotation = "90 0 0" width="23" height = "70" side="double" repeat = "1 3"></a-plane>	
 
 			<a-box src="#wall" static-body position="11 10 96" rotation="0 90 0" depth="0.1" width="70" height="10" repeat="2 1"></a-box>
 			<a-box src="#wall" static-body position="-12 10 96" rotation="0 90 0" depth="0.1" width="70" height="10" repeat="2 1"></a-box>
@@ -93,27 +95,27 @@
 
 
 
-            <a-box position="11 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1"></a-box>
-            <a-box position="-12 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+            <a-box position="11 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1" repeat="2 1"></a-box>
+            <a-box position="-12 -4 4.5 " rotation="0 90 0" src="#wall" width="11" height="8" depth="0.1" static-body repeat="2 1" repeat="2 1"></a-box>
 
 
 
 
-            <a-box position="-0.5 -4 10"  src="#wall" width="23" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+            <a-box position="-0.5 -4 10"  src="#wall" width="23" height="8" depth="0.1" static-body repeat="2 1" repeat="2 1"></a-box>
 
-            <a-box position="-0.5 -4 -1"  src="#wall" width="23" height="8" depth="0.1" static-body repeat="2 1"></a-box>
+            <a-box position="-0.5 -4 -1"  src="#wall" width="23" height="8" depth="0.1" static-body repeat="2 1" repeat="2 1"></a-box>
 
 
 
-            <a-box position="-0.5 -2 20"  src="#wall" width="23" height="4" depth="0.1" static-body repeat="2 1"></a-box>
+            <a-box position="-0.5 -2 20"  src="#wall" width="23" height="4" depth="0.1" static-body repeat="2 1" repeat="2 1"></a-box>
 
-            <a-box position="-0.5 2 30"  src="#wall" width="23" height="12" depth="0.1" static-body repeat="2 1"></a-box>
+            <a-box position="-0.5 2 30"  src="#wall" width="23" height="12" depth="0.1" static-body repeat="2 1" repeat="2 1"></a-box>
 
 
 
 
       <!-- Wall with Door -->
-            <a-box src="#wall" position="-0.5 6 20" width="5" height="3.8" depth="0.1" static-bodyrepeat="2 1"></a-box>
+            <a-box src="#wall" position="-0.5 6 20" width="5" height="3.8" depth="0.1" static-body repeat="2 1"></a-box>
 
 
             <a-box position="6.5 4 20"  src="#wall" width="9" height="8" depth="0.1" static-body repeat="2 1"></a-box>
@@ -157,7 +159,7 @@
 	
 	<a-plane static-body  rotation="-90 0 0" visible side="double" position="-13 4 50" width="8" height="5"  depth = "3" src="#moving" animation="property: position; to: '-13 4 50'; dur: 5000; easing: linear; loop: true; dir: alternate"></a-plane>
 	
-	<a-gltf-model id="trophyModel" static-body src="#trophy" scale="2 2 2" position="0 8 125"></a-gltf-model>
+	<a-gltf-model id="trophyModel" src="#trophy" scale="2 2 2" position="0 8 125"></a-gltf-model>
 
             <a-box class="ignore-portal" rotation="45 0 0" position="-.5 13.5 25.5"  src="#wall" width="25" height="16.5" depth="0.2" static-body></a-box>
 
@@ -173,6 +175,7 @@
 			  <a-entity id="audioOrange" sound="src:#fireOrange; autoplay:false; positional:false"></a-entity>
 			  <a-entity id="audioTeleport" sound="src:#teleport; autoplay:false; positional:false"></a-entity>
 			  <a-entity id="audioCaught" sound="src:#caught; autoplay:false; positional:false"></a-entity>
+			  <a-entity id="audioApplause" sound="src:#applause; autoplay:false; positional:false"></a-entity>
 			 
           <a-cursor raycaster="objects: .clickable">
 		  	  <a-entity id="transition" geometry="primitive: plane; width:6; height:5" 
@@ -180,20 +183,21 @@
 			  animation = "property: material.opacity; from 1; to 0; dur: 1000; startEvents: fadeOut">
 			  </a-entity> 
 			  
-			<a-text id="welcomeText" value="You got caught!" position="0 0 0"
-					visible="false" opacity="0" style="color: red"
-					animation__fade="property: opacity; from: 1; to: 0; dur: 2000; startEvents: fadeOut">
-			</a-text>
+			<a-entity id="welcomeText" position="0 0 -1"
+					 text="value: You Got Caught!; align: center; width: 4; color: red; opacity: 0" 
+					animation="property: text.opacity; from: 1; to: 0; dur: 2500; startEvents: fadeOut; easing: linear;">
+			</a-entity>
 			
-			 <a-text id="winText" value="Congratulations, you won!" position="0 0 0" scale="1 1 1" visible="false" opacity="0" style="color: red"
-				animation__fade="property: opacity; from: 1; to: 0; dur: 3000; startEvents: fadeOut">
-			 </a-text>
+			 <a-entity id="winText" position="0 0 -0.5" scale="1.5 1.5 1.5" 
+			 text="value: Congratulations, You Won!; align: center; width: 4; color: gold; opacity: 0" 
+			 </a-entity>
 			
 	  
-		  <a-entity id="hint" position="0 -1 -2" 
-			  text="value: ; align: center; width: 4; color: black; opacity: 0"
-			  animation="property: material.opacity; from: 1; to: 0; dur: 1000; startEvents: fadeOut">
-		  </a-entity>
+		<a-entity id="hint" position="0 -1 -2"
+		  text="value: ; align: center; width: 4; color: black"
+		  material="opacity: 0"
+		  animation="property: text.opacity; from: 1; to: 0; dur: 1000; startEvents: fadeOut; easing: linear;">
+		</a-entity>
 			  
 		    <a-entity id="cooldownDisplay" color = "white" style="position: absolute; top: 10%; left: 75%; transform: translate(-50%, -50%); 
        color: white; font-size: 2rem; background-color: rgba(0, 0, 0, 0.7); padding: 10px 20px; border-radius: 10px;z-index: 999;">></a-entity>

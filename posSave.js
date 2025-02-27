@@ -12,7 +12,6 @@ class posSave{
 	this.obj.setAttribute("position", `${this.x} ${this.y} ${this.z}`);
 	this.obj.setAttribute("scale", "0.1 0.1 0.1");
 	this.obj.setAttribute("class", "clickable");
-	this.obj.setAttribute("geometry", "primitive: box; width: 1; height: 1; depth: 1");
 
 	
     this.obj.addEventListener("model-loaded", () => {
@@ -36,12 +35,20 @@ record() {
     let worldPos = new THREE.Vector3();
     this.camera.object3D.getWorldPosition(worldPos);
 
-    this.hint.setAttribute("text", "value: Position Saved!; opacity: 1"); 
+    this.hint.setAttribute("text", "value: Position Saved!; opacity: 1");
+    this.hint.setAttribute("material", "opacity: 1");
+
+    console.log("Emitting fadeOut");
+    this.hint.emit("fadeOut");
+
+    setTimeout(() => {
+      this.hint.setAttribute("text", "value: ");
+    }, 1100); 
 
     this.pos = { x: worldPos.x, y: worldPos.y, z: worldPos.z };
     console.log("Recorded Position:", this.pos);
-	
-    this.hint.emit("fadeOut");
+
+    this.isRecording = false;
   }
 }
   

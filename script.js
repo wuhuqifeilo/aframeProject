@@ -1,4 +1,4 @@
-let scene, cam, robot, posSaveMachine, bluePortalshot, orangePortalShot, machineClicked;
+let scene, cam, robot, posSaveMachine, trophyModel, machineClicked;
 let currentBluePortal = null;
 let currentOrangePortal = null;
 let collisionCooldown = false;
@@ -10,14 +10,20 @@ let cd = 2100;
 window.onload = function(){
   scene = document.querySelector("a-scene");
   cam   = document.getElementById("camera");
-  bluePortalshot = document.getElementById("bluePortalShot");
-  orangePortalshot = document.getElementById("orangePortalShot");
   machineClicked = document.getElementById("machineClicked");
-  const trophyModel = document.querySelector('#trophyModel');
+  trophyModel = document.querySelector('#trophyModel');
+  scene.addEventListener("model-loaded", function(){
+	  trophyModel.setAttribute("static-body", { shape: 'box' });
+	  trophyModel.setAttribute("class", "clickable");
+  })
+		
+  trophyModel.addEventListener("click", function(){
+	  if(trophyModel){
+		  showWinText();
+	  }
+  });
     
-    if (trophyModel) {
-        trophyModel.addEventListener('click', showWinText());
-    }
+
 
 	
   scene.addEventListener("loaded", () => {
@@ -57,10 +63,10 @@ window.onload = function(){
 		console.log("Teleported to:", pos);
 	  }
 	}
-	
-	loop();
-	
+		
   });
+  
+  loop();
 
 }
 
@@ -169,14 +175,7 @@ function showWinText() {
 	
     let winText = document.getElementById("winText");
     if (winText) {
-        winText.setAttribute("visible", "true");
         winText.setAttribute("opacity", "1");
-        winText.emit("fadeOut");
-
-        setTimeout(() => {
-            winText.setAttribute("visible", "false");
-            winText.setAttribute("opacity", "0");
-        }, 30000);
     }
 }
 

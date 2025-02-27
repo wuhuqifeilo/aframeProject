@@ -30,6 +30,7 @@ class Robot {
     if (distance < 10) {  
         if (!this.isChasing) {
             this.isChasing = true;
+			this.go = true;
         }
         this.faceToCamera();
         this.move();
@@ -40,22 +41,24 @@ class Robot {
         }
     }
 
-    if (this.isChasing && distance > 15) { 
+    if ( distance > 15) { 
         this.returnToOrigin();
     }
   }
 
-  returnToOrigin() {
-
-    if (Date.now() - this.lastReturnTime < this.returnCooldown) return;
-    
-    console.log("exceeding 15m, robot back to origin");
-    this.obj.setAttribute("position", this.initialPosition);
-
-    this.lastReturnTime = Date.now();
-    this.isChasing = false;
-    this.go = false;
-  }
+	returnToOrigin() {
+		if (Date.now() - this.lastReturnTime < this.returnCooldown) return;
+		
+		console.log(`exceeding 15m, robot back to origin at (${this.obj.object3D.position.x}, ${this.obj.object3D.position.y}, ${this.obj.object3D.position.z})`);
+		
+		this.obj.setAttribute("position", this.initialPosition);
+		this.lastReturnTime = Date.now();
+		this.isChasing = false;
+		this.go = false;
+		
+		this.dx = 0;
+		this.dz = 0;
+	}
   
 	teleportPlayerToOrigin() {
 		let player = this.camera;
@@ -72,16 +75,10 @@ class Robot {
 		}
 
 		let welcomeText = document.getElementById("welcomeText");
-		if (welcomeText) {
-			welcomeText.setAttribute("visible", "true");
-			welcomeText.setAttribute("opacity", "1");
-			welcomeText.emit("fadeOut");
 
-			setTimeout(() => {
-				welcomeText.setAttribute("visible", "false");
-				welcomeText.setAttribute("opacity", "0");
-			}, 2500);
-		}
+		welcomeText.setAttribute("opacity", "1");
+		welcomeText.emit("fadeOut");
+		
 	}
 
   distanceTo(target) {
@@ -107,24 +104,23 @@ class Robot {
     });
   }
 
-  move() {
-    let camPos = this.camera.object3D.position;
-    let robotPos = this.obj.object3D.position;
-    
-    let dx = camPos.x - robotPos.x;
-    let dz = camPos.z - robotPos.z;
-    let distance = Math.sqrt(dx ** 2 + dz ** 2);
-    
-    if (distance > 0) {
-      let speed = 0.05;
-      this.dx = (dx / distance) * speed;
-      this.dz = (dz / distance) * speed;
-      this.go = true;
-    }
-    
-    if (this.go) {
-      this.obj.object3D.position.x += this.dx;
-      this.obj.object3D.position.z += this.dz;
-    }
-  }
-}
+	move() {
+		if (!this.go) return; 
+
+		let camPos = this.camera.object3D.position;
+		let robotPos = this.obj.object3D.position;
+		
+		let dx = camPos.x - robotPos.x;
+		let dz = camPos.z - robotPos.z;
+		let distance = Math.sqrt(dx ** 2 + dz ** 2);
+		
+		if (distance > 0) {
+			let speed = 0.1;
+			this.dx = (dx / distance) * speed;
+			this.dz = (dz / distance) * speed;
+		}
+		
+		this.obj.object3D.position.x += this.dx;
+		this.obj.object3D.position.z += this.dz;
+	}
+	}

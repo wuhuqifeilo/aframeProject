@@ -47,27 +47,22 @@ class Portal {
 
     this.scene.appendChild(this.obj);
 
-    let speed = 0.05; 
+    let speed = 0.2; 
     let cosX = Math.cos(rotX);
     this.dx = -Math.sin(rotY) * cosX * speed;
     this.dy =  Math.sin(rotX) * speed;
     this.dz = -Math.cos(rotY) * cosX * speed;
   }
 
-  shoot() {
-	if (!this.moving) return;
-
-	if(this.moving){
-		let p = this.obj.object3D.position;
-		for(let i = 0; i < 5; i++){
-		p.x += this.dx;
-		p.y += this.dy;
-		p.z += this.dz;
-		}
+	shoot() {
+	  if (!this.moving) return;
+	  let p = this.obj.object3D.position;
+	  p.x += this.dx;
+	  p.y += this.dy;
+	  p.z += this.dz;
+	  this.checkCollision();
 	}
-
-	this.checkCollision();
-  }
+  
 
   checkCollision(){
 	  
